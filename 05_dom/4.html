@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM</title>
+  </head>
+  <body>
+    <ul id="language">
+      <li>English</li>
+    </ul>
+
+    <!-- js -->
+    <script>
+      const addLanguage = (langName) => {
+        const li = document.createElement("li");
+        li.innerText = `${langName}`;
+        document.querySelector("#language").appendChild(li);
+      };
+
+      addLanguage("Bangla");
+      addLanguage("Hindi");
+
+      const addLanguageOptimizedWay = (langName) => {
+        const li = document.createElement("li");
+        li.appendChild(document.createTextNode(langName));
+        document.querySelector("#language").appendChild(li);
+      };
+
+      addLanguageOptimizedWay("Turki");
+      addLanguageOptimizedWay("Arabic");
+
+      //   edit li
+      const secondLanguage = document.querySelector("li:nth-child(2)");
+      const newLi = document.createElement("li");
+      newLi.textContent = "Hello!";
+      secondLanguage.replaceWith(newLi);
+
+      // edit more one time
+      const firstLanguage = document.querySelector("li:first-child");
+      firstLanguage.outerHTML = "<li>Typescript</li>";
+
+      // remove
+      const lastLanguage = document.querySelector("li:last-child");
+      lastLanguage.remove();
+    </script>
+  </body>
+</html>
