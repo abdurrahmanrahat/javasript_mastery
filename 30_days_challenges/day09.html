@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Manipulation</title>
+  </head>
+  <body>
+    <div>
+      <h2 id="text">Here is my content</h2>
+      <h2 class="amazing">Amazing content!</h2>
+    </div>
+    <div>
+      <ul id="list">
+        <li>rahat</li>
+        <li>rahman</li>
+        <li>abdur</li>
+      </ul>
+    </div>
+    <div id="lorem">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique, a.
+    </div>
+    <div id="myElement">
+      <p>first</p>
+      <p>second</p>
+      <p>third</p>
+    </div>
+    <div>
+      <img
+        src="https://food-supply.netlify.app/assets/1-B02dY-OP.jpg"
+        width="120"
+        alt="image"
+        id="image"
+      />
+    </div>
+    <div>
+      <button
+        style="padding: 4px; border-radius: 4px; background-color: brown"
+        id="btn"
+      >
+        Change Content
+      </button>
+      <p id="change-content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, voluptate.
+      </p>
+    </div>
+
+    <script>
+      //------------ DOM Manipulation -------- //
+
+      //---- Activity 01: Selecting and Manipulating Elements
+      const myText = document.getElementById("text");
+      myText.textContent = "Here is the updated content";
+
+      const amazing = document.getElementsByClassName("amazing");
+      amazing[0].style.backgroundColor = "green";
+
+      //---- Activity 02: Creating and Appending Elements
+      const newDiv = document.createElement("div");
+      newDiv.textContent = "Added from javascript by Rahat";
+      document.body.appendChild(newDiv);
+
+      const ul = document.getElementById("list");
+      const newLi = document.createElement("li");
+      newLi.textContent = "Tahar";
+      ul.appendChild(newLi);
+
+      //---- Activity 03: Removing Elements
+      const loremText = document.getElementById("lorem");
+      loremText.remove();
+
+      const myElement = document.getElementById("myElement");
+      if (myElement.lastChild) {
+        myElement.removeChild(myElement.lastElementChild);
+      }
+
+      //---- Activity 04: Modifying Attributes and Classes
+      const image = document.getElementById("image");
+      image.setAttribute(
+        "src",
+        "https://food-supply.netlify.app/assets/2-0-jfTGBg.jpg"
+      );
+      //   console.log(image.getAttribute("src"));
+      image.style.borderRadius = "12px";
+      image.style.borderRadius = "";
+
+      //---- Activity 05: Event Handling
+      const button = document.getElementById("btn");
+      const p = document.getElementById("change-content");
+      console.log(p);
+      button.addEventListener("click", () => {
+        p.textContent = "Hello Bro!!";
+      });
+    </script>
+  </body>
+</html>
