@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Handler</title>
+  </head>
+  <body>
+    <section>
+      <div>
+        <h2 id="my-content">My Content</h2>
+        <button
+          style="padding: 4px; border-radius: 4px; background-color: brown"
+          id="btn"
+        >
+          Change Content
+        </button>
+      </div>
+      <div>
+        <img
+          src="https://food-supply.netlify.app/assets/1-B02dY-OP.jpg"
+          width="120"
+          alt="image"
+          id="image"
+        />
+      </div>
+      <div>
+        <h2 id="add-bg">Add background-color to mouse hover</h2>
+      </div>
+      <div>
+        <input id="input-text" type="text" />
+      </div>
+      <div id="display-text" style="margin: 20px 0px">
+        <input id="input-text-display" type="text" />
+      </div>
+      <div>
+        <form id="my-form">
+          <label for="email"></label>
+          <input name="email" type="text" placeholder="Email" />
+          <label for="password"></label>
+          <input name="password" type="password" placeholder="Password" />
+          <input
+            style="padding: 4px; border-radius: 4px; background-color: brown"
+            type="submit"
+            value="Submit"
+            id="form-btn"
+          />
+        </form>
+      </div>
+      <div>
+        <form>
+          <select name="friend" id="select-friend">
+            <option value="">Select Friend</option>
+            <option value="Mahmud">Mahmud</option>
+            <option value="Tuhin">Tuhin</option>
+            <option value="Rahat">Rahat</option>
+            <option value="Mahtab">Mahtab</option>
+          </select>
+        </form>
+        <h2 id="show-friend"></h2>
+      </div>
+
+      <div>
+        <ul id="list">
+          <li>hello</li>
+          <li>yasin</li>
+          <li>skjdd</li>
+          <li>arafath</li>
+        </ul>
+      </div>
+
+      <div id="parent">
+        <ul id="item-list">
+          <li>item 01</li>
+          <li>item 02</li>
+          <li>item 03</li>
+          <li>item 04</li>
+        </ul>
+        <button id="add-item">Add Item</button>
+      </div>
+    </section>
+
+    <script>
+      //------------ Event Handler -------- //
+
+      //---- Activity 01: Basic Event Handling
+      const button = document.getElementById("btn");
+      const myContent = document.getElementById("my-content");
+
+      button.addEventListener("click", () => {
+        myContent.textContent = "Updated via JS";
+      });
+
+      const image = document.getElementById("image");
+      image.addEventListener("dblclick", () => {
+        image.style.visibility = "hidden";
+      });
+
+      //---- Activity 02: Mouse Event
+      const addBgEle = document.getElementById("add-bg");
+      addBgEle.addEventListener("mouseover", () => {
+        addBgEle.style.backgroundColor = "green";
+      });
+
+      addBgEle.addEventListener("mouseout", () => {
+        addBgEle.style.backgroundColor = "";
+      });
+
+      //---- Activity 03:  Keyboard Event
+      const inputText = document.getElementById("input-text");
+      inputText.addEventListener("keydown", (e) => {
+        console.log(e.target.value);
+      });
+
+      const inputTextDisplay = document.getElementById("input-text-display");
+      const displayTextDiv = document.getElementById("display-text");
+      inputTextDisplay.addEventListener("keyup", (e) => {
+        console.log(e.target.value);
+        const newP = document.createElement("p");
+        newP.textContent = e.target.value;
+        displayTextDiv.append(newP);
+      });
+
+      //---- Activity 04: Form Events
+      const form = document.getElementById("my-form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        const formObj = {};
+        formData.forEach((value, key) => {
+          formObj[key] = value;
+        });
+        console.log(formObj);
+      });
+
+      const selectFriend = document.getElementById("select-friend");
+      const showFriend = document.getElementById("show-friend");
+      selectFriend.addEventListener("change", () => {
+        showFriend.textContent = selectFriend.value;
+      });
+
+      //---- Activity 05: Event Delegation
+      const list = document.getElementById("list");
+      list.addEventListener("click", (e) => {
+        console.log(e.target.tagName); // li
+        console.log(e.target.textContent);
+        console.log(e.target.innerHTML);
+        console.log(e.target.innerText);
+      });
+
+      const parent = document.getElementById("parent");
+      const listItem = document.getElementById("item-list");
+      const addItem = document.getElementById("add-item");
+
+      const lastListItem = listItem.lastElementChild.textContent;
+
+      addItem.addEventListener("click", () => {
+        const newLi = document.createElement("li");
+        newLi.textContent = `item 0${Number(lastListItem.slice(-1)) + 1}`;
+        listItem.appendChild(newLi);
+      });
+
+      parent.addEventListener("click", (e) => {
+        if (e.target.tagName === "LI") {
+          console.log(e.target.innerText);
+        }
+      });
+    </script>
+  </body>
+</html>
