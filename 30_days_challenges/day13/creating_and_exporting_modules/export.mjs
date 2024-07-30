@@ -2,6 +2,7 @@ const addTwoNumbers = (number1, number2) => {
     return number1 + number2;
 }
 
+// 
 const person = {
     name: "rahat",
     age: 21,
