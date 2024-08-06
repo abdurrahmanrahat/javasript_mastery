@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Storage</title>
+  </head>
+  <body>
+    <section>
+      <h2>User Form</h2>
+      <form action="" id="myForm">
+        <label for="name">Name</label>
+        <input type="text" name="name" />
+        <label for="email">Email</label>
+        <input type="text" name="email" />
+
+        <input type="submit" value="Submit" />
+      </form>
+
+      <div id="show"></div>
+    </section>
+
+    <script>
+      const form = document.getElementById("myForm");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        const formObj = {};
+        formData.forEach((value, key) => {
+          formObj[key] = value;
+        });
+
+        localStorage.setItem("userData", JSON.stringify(formObj));
+
+        const retrieveUser = JSON.parse(localStorage.getItem("userData"));
+
+        const showUser = document.getElementById("show");
+
+        const newP = document.createElement("p");
+        newP.textContent = retrieveUser.name;
+        const newP2 = document.createElement("p");
+        newP2.textContent = retrieveUser.email;
+
+        showUser.appendChild(newP);
+        showUser.appendChild(newP2);
+      });
+    </script>
+
+    <!-- Task 4: VWite a script to remove an item from localStorage . Log the localStorage content before and after. -->
+
+    <script>
+      localStorage.setItem("remove", "this is removable content");
+      const retrievedValue = localStorage.getItem("remove");
+      console.log(localStorage);
+      localStorage.removeItem("remove");
+      console.log(localStorage);
+    </script>
+  </body>
+</html>

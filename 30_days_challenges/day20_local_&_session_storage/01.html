@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Storage</title>
+  </head>
+  <body>
+    <h2>Local and Session Storage</h2>
+
+    <script>
+      // understand the local storage
+
+      // // Task 1: Write a script to save a string value to localStorage and retrieve it. Log the retrieve value.
+
+      const data = "hello me!!";
+      localStorage.setItem("data", data);
+
+      const retrievedValue = localStorage.getItem("data");
+      console.log(retrievedValue);
+
+      // // Task 2: Write a script to save an object to localStorage by converting it to a JSON string. Retrieve and parse the object, then log it.
+      const myObj = {
+        name: "Rahat",
+        age: 21,
+      };
+      localStorage.setItem("myObj", JSON.stringify(myObj));
+
+      const retrievedObj = localStorage.getItem("myObj");
+      console.log(JSON.parse(retrievedObj));
+    </script>
+  </body>
+</html>
